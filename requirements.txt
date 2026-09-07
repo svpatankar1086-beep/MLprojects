@@ -6,5 +6,5 @@ seaborn
 xgboost
 catboost
 Flask
-
+dill
 #-e .
