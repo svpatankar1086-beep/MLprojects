@@ -1,3 +1,551 @@
-<h1>
-    Welcome to home page
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Performance Analysis</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eef4ff, #f8fbff);
+            color: #172033;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 21px;
+            font-weight: 700;
+            color: #1d4ed8;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #2563eb;
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+
+        .nav-label {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 570px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            padding: 50px 0 70px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 9px 15px;
+            border-radius: 30px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            line-height: 1.08;
+            margin-bottom: 22px;
+            color: #111827;
+        }
+
+        .hero h1 span {
+            color: #2563eb;
+        }
+
+        .hero-description {
+            max-width: 620px;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 24px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.20);
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* RIGHT CARD */
+
+        .analysis-card {
+            width: 390px;
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 20px 50px rgba(30, 64, 175, 0.12);
+            border: 1px solid #e5e7eb;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            margin-bottom: 25px;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #eff6ff;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+        }
+
+        .card-header h3 {
+            font-size: 19px;
+            color: #111827;
+        }
+
+        .card-header p {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .factor {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .factor:last-child {
+            border-bottom: none;
+        }
+
+        .factor-name {
+            color: #475569;
+            font-size: 14px;
+        }
+
+        .factor-tag {
+            padding: 6px 10px;
+            border-radius: 7px;
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* FEATURES */
+
+        .section {
+            padding: 20px 0 70px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #111827;
+        }
+
+        .section-heading p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #e5e7eb;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+        }
+
+        .feature-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            background: #eff6ff;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 17px;
+        }
+
+        .feature-card h3 {
+            font-size: 17px;
+            margin-bottom: 9px;
+            color: #1e293b;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #64748b;
+        }
+
+        /* PROBLEM STATEMENT */
+
+        .problem-box {
+            background: #172554;
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .problem-box .small-title {
+            color: #93c5fd;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .problem-box h2 {
+            font-size: 27px;
+            margin-bottom: 15px;
+        }
+
+        .problem-box p {
+            max-width: 800px;
+            margin: auto;
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid #e2e8f0;
+            padding: 25px 0;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 850px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 30px;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .analysis-card {
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .problem-box {
+                padding: 28px 20px;
+            }
+
+            .problem-box h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- NAVBAR -->
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">🎓</div>
+                Student Performance AI
+            </div>
+
+            <div class="nav-label">
+                Data-Driven Student Analysis
+            </div>
+        </nav>
+
+
+        <!-- HERO SECTION -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    📊 Machine Learning Based Analysis
+                </div>
+
+                <h1>
+                    Student <span>Performance</span> Analysis
+                </h1>
+
+                <p class="hero-description">
+                    Understand how different student and educational factors
+                    influence academic performance using data-driven
+                    analysis and machine learning.
+                </p>
+
+                <!-- IMPORTANT: Connects index.html to home.html -->
+                <a href="{{ url_for('predict_datapoint') }}" class="button">
+                    Analyze Student Performance →
+                </a>
+
+            </div>
+
+
+            <!-- ANALYSIS FACTORS CARD -->
+            <div class="analysis-card">
+
+                <div class="card-header">
+
+                    <div class="card-icon">
+                        📈
+                    </div>
+
+                    <div>
+                        <h3>Performance Factors</h3>
+                        <p>Variables considered by the system</p>
+                    </div>
+
+                </div>
+
+
+                <div class="factor">
+                    <span class="factor-name">Gender</span>
+                    <span class="factor-tag">Demographic</span>
+                </div>
+
+                <div class="factor">
+                    <span class="factor-name">Ethnicity</span>
+                    <span class="factor-tag">Demographic</span>
+                </div>
+
+                <div class="factor">
+                    <span class="factor-name">Parental Education</span>
+                    <span class="factor-tag">Education</span>
+                </div>
+
+                <div class="factor">
+                    <span class="factor-name">Lunch Type</span>
+                    <span class="factor-tag">Lifestyle</span>
+                </div>
+
+                <div class="factor">
+                    <span class="factor-name">Test Preparation</span>
+                    <span class="factor-tag">Preparation</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROBLEM STATEMENT -->
+        <section class="problem-box">
+
+            <div class="small-title">
+                Project Objective
+            </div>
+
+            <h2>
+                What affects student performance?
+            </h2>
+
+            <p>
+                This project analyzes how a student's performance in tests
+                is affected by variables such as Gender, Ethnicity,
+                Parental Level of Education, Lunch Type and Test Preparation
+                Course, along with their academic scores.
+            </p>
+
+        </section>
+
+
+        <!-- FEATURES -->
+        <section class="section">
+
+            <div class="section-heading">
+
+                <h2>
+                    What the System Analyzes
+                </h2>
+
+                <p>
+                    Multiple factors are considered to understand student performance.
+                </p>
+
+            </div>
+
+
+            <div class="features">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        👤
+                    </div>
+
+                    <h3>
+                        Student Information
+                    </h3>
+
+                    <p>
+                        Considers demographic information such as gender
+                        and ethnicity as part of the analysis.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🎓
+                    </div>
+
+                    <h3>
+                        Educational Background
+                    </h3>
+
+                    <p>
+                        Examines the relationship between parental education
+                        and student academic performance.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📚
+                    </div>
+
+                    <h3>
+                        Preparation & Scores
+                    </h3>
+
+                    <p>
+                        Uses lunch type, test preparation and previous
+                        academic scores to analyze student performance.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+<footer>
+    Student Performance Analysis™
+    <br>
+    © 2026 Sarvadnya V Patankar. All Rights Reserved.
+</footer>
+
+    </div>
+
+</body>
+</html>
